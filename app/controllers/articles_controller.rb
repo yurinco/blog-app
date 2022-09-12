@@ -21,11 +21,28 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def edit
+    @article = Article.find(params[:id])
+  end
+
+  def update
+    @article = Article.find(params[:id])
+    if @article.update(article_params)
+      redirect_to article_path(@article), notice: '更新できました'
+    else
+      flash.now[:error] = '更新できませんでした'
+      render :edit
+    end
+  end
+
+  def destroy
+    article = Article.find(params[:id])
+    article.destroy!
+    redirect_to root_path, notice: '削除に成功しました'
+  end
+
   private
   def article_params
-    puts '--------------'
-    puts params
-    puts '--------------'
     params.require(:article).permit(:title, :content)
   end
 end

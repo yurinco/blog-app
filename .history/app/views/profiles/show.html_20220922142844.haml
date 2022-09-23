@@ -1,0 +1,29 @@
+.container.profilePage
+  .profilePage_user
+    .profilePage_user_image
+      = image_tag 'default-avatar.png'
+    .profilePage_user_basicInfo
+      .profilePage_user_name
+        .profilePage_user_displayName
+          = current_user.display_name
+        .profilePage_user_actionButton
+          = link_to 'Edit', edit_profile_path
+      .profilePage_user_introduction
+        あああああああああああああああああああああああああああああああああああああああああああああああああああああ
+
+  - current_user.articles.each do |article|
+    = link_to article_path(article) do
+      .card
+        .card_image
+          = image_tag 'eyecatch1.png'
+        .card_content
+          .card_title
+            = article.title
+          .card_heart
+            = image_tag 'heart.svg'
+            %span 23
+          .card_detail
+            = image_tag 'default-avatar.png'
+            %div
+              %p= article.author_name
+              %p= article.display_created_at

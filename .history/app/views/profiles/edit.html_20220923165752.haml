@@ -1,0 +1,5 @@
+.container
+    %ul
+        - @profile.errors.full_messages.each do |message|
+            %li= message
+    = form_with(model: @profile, url: profile_path, method: 'put', local: true) d |f|

@@ -1,0 +1,7 @@
+class FavoritesController < ApplicationController
+  before_action :authenticate_user!
+end
+
+def index
+  @articles = current_user.
+end
